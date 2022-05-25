@@ -91,3 +91,4 @@ def run_ml():
             st.subheader('당신은 높은 확률로 비흡연자입니다.')
         else :
             st.subheader('당신은 높은 확률로 흡연자입니다.')
+
