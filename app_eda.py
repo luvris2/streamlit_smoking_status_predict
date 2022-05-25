@@ -41,7 +41,7 @@ def run_eda() :
     st.subheader('나이와 성별 분포')
     age = df['age'].value_counts().index
 
-    fig 
+    
     fig2 = make_subplots(rows=1, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}]])
     fig2.add_trace(go.Pie(labels=age, values=df['age'].value_counts(), name='나이'), 1, 1)
     fig2.add_trace(go.Pie(labels=['남자','여자'], values=df['gender'].value_counts(), name='성별'), 1, 2)
@@ -49,8 +49,8 @@ def run_eda() :
     fig2.update_layout(
         annotations=[dict(text='나이', x=0.18, y=0.5, font_size=20, showarrow=False),
                     dict(text='성별', x=0.82, y=0.5, font_size=20, showarrow=False)])
-    st.plotly_chart(fig2)
-
+    st.plotly_chart(fig2)    
+            
     df['gender'] = label_gender.transform(df['gender'])
     df['tartar'] = label_tartar.transform(df['tartar'])
     st.subheader('상관관계 히트맵 차트')
