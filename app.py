@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sb
 import app_home
-import app_eda_copy
+import app_eda
 import app_ml
 
 def main() :
@@ -13,7 +13,7 @@ def main() :
     if choice == menu[0] :
         app_home.run_home()
     elif choice == menu[1] :
-        app_eda_copy.run_eda()  
+        app_eda.run_eda()  
     elif choice == menu[2] :
         app_ml.run_ml()
 
