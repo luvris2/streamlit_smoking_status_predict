@@ -5,6 +5,7 @@ import numpy as np
 def run_ml():
     st.subheader('건강 상태에 따른 흡연 여부 예측')
 
+    # 건강 상태 입력
     gender = st.radio('성별을 선택해주세요.', ['남자', '여자'])
     age = st.slider('나이를 입력해주세요. \
         5의 단위이며 가장 근접한 나이로 적어주세요.', 20, 85, 45, 5)
@@ -44,6 +45,7 @@ def run_ml():
     dental_caries = st.radio('충치 여부를 선택해주세요.', ['충치없음', '충치있음'])
     tartar = st.radio('치석 여부를 선택해주세요.', ['치석없음', '치석있음'])
 
+    # 입력된 문자 데이터들 숫자로 치환
     if gender == '여자' :
         gender = 0
     else :
@@ -80,12 +82,14 @@ def run_ml():
     else :
         tartar = 1
 
+
     if st.button('결과 확인') :
+        # 미리 학습시킨 RandomForestClassifier 모델 호출
         RF = joblib.load('data/RF_ML.pkl')
 
+        # 입력된 건강 정보를 통하여 흡연 여부 예측
         x_data = np.array([gender, age, height, weight, waist, eyesight_left, eyesight_right, hearing_left, hearing_right, systolic, relaxation, fasting_blood_sugar, cholesterol, triglyceride, HDL, LDL, hemoglobin, urine_protein, serum_creatinine, AST, ALT, Gtp, dental_caries, tartar])
         x_data = x_data.reshape(1,24)     
-
         y_pred = RF.predict(x_data)
         if y_pred == 0 :
             st.subheader('당신은 높은 확률로 비흡연자입니다.')
